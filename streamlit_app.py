@@ -17,5 +17,25 @@ def create_model(csv_file):
     model = sm.OLS(y_train, X_train).fit()
     return model
 
+pizza_data_record = {
+    'Intercept': 2,                     #
+    'Topping 1': 0,                     # 0: no, 1: yes
+    'Topping 2': 1,                     # 0: no, 1: yes
+    'Topping 3': 0,                     # 0: no, 1: yes
+    'Size': 1,                          # 0: Small, 1: Large, 2: Big
+    'Extras Sauce': 1,                  # 0: no, 1: yes
+    'Extra Cheese': 0,                  # 0: no, 1: yes
+    'Distance to City Center (km)': 3,  # 1,3,5,10 km
+    'Restaurant': 0,                    # 0: Take-Away, 1: Dine-In
+    'Rating': 4                         # 1,2,3,4,5,6 Stars
+}
+
+df = pd.DataFrame([pizza_data_record])
+st.write(df)
+st.write(df.transpose())
+
+predicted_price = model.predict(df)
+st.write(f"Predicted Price for the User's Pizza: {predicted_price.values[0]}")
+
 model = create_model(csv_file="pizza_dataset_relative_price.csv")
 st.write(model.summary())
