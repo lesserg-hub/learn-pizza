@@ -1,2 +1,2 @@
-import streamlit as sa
+import streamlit as st
 st.write("Meine Pizza")
